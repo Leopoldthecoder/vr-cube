@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VR Cube</title>
+  <script src="./aframe.min.js"></script>
+  <script>
+    AFRAME.registerComponent('pivot-point', {
+      dependencies: ['position'],
+
+      schema: {type: 'vec3'},
+
+      update: function (oldData) {
+        var originalPosition = new THREE.Vector3();
+        var originalRotation = new THREE.Vector3();
+        var data = oldData ? {
+          x: this.data.x - oldData.x,
+          y: this.data.y - oldData.y,
+          z: this.data.z - oldData.z,
+        } : this.data;
+        var el = this.el;
+        var originalParent = el.object3D.parent;
+        var originalGroup = el.object3D;
+        var outerGroup = new THREE.Group();
+
+        originalPosition.copy(originalGroup.position);
+        originalRotation.copy(originalGroup.rotation);
+
+        // Detach current group from parent.
+        originalParent.remove(originalGroup);
+        outerGroup.add(originalGroup);
+
+        // Set new group as the outer group.
+        originalParent.add(outerGroup);
+
+        // Set outer group as new object3D.
+        el.object3D = outerGroup;
+
+        // Apply pivot to original group.
+        originalGroup.position.set(-1 * data.x, -1 * data.y, -1 * data.z);
+
+        // Offset the pivot so that world position not affected.
+        // And restore position onto outer group.
+        outerGroup.position.set(data.x + originalPosition.x, data.y + originalPosition.y, data.z + originalPosition.z);
+
+        // Transfer rotation to outer group.
+        outerGroup.rotation.copy(originalGroup.rotation);
+        originalGroup.rotation.set(0, 0, 0);
+      }
+    });
+  </script>
+</head>
+<body>
+<a-scene>
+  <a-box position="-5 -5 -5" color="black" pivot-point="-1 -1 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-5 -6 -5" color="black" pivot-point="-1 0 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-5 -7 -5" color="black" pivot-point="-1 1 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
+  </a-box>
+  <a-box position="-6 -5 -5" color="black" pivot-point="0 -1 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+  </a-box>
+  <a-box position="-6 -6 -5" color="black" pivot-point="0 0 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+  </a-box>
+  <a-box position="-6 -7 -5" color="black" pivot-point="0 1 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
+  </a-box>
+  <a-box position="-7 -5 -5" color="black" pivot-point="1 -1 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+  </a-box>
+  <a-box position="-7 -6 -5" color="black" pivot-point="1 0 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
+  </a-box>
+  <a-box position="-7 -7 -5" color="black" pivot-point="1 1 0" rotation="0 0 0">
+    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 360"></a-animation>
+    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
+  </a-box>
+  
+  <a-box position="-5 -5 -6" color="black">
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-5 -6 -6" color="black">
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-5 -7 -6" color="black">
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-6 -5 -6" color="black">
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+  </a-box>
+  <a-box position="-6 -6 -6" color="black"></a-box>
+  <a-box position="-6 -7 -6" color="black"></a-box>
+  <a-box position="-7 -5 -6" color="black">
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+  </a-box>
+  <a-box position="-7 -6 -6" color="black"></a-box>
+  <a-box position="-7 -7 -6" color="black"></a-box>
+  
+  <a-box position="-5 -5 -7" color="black">
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-5 -6 -7" color="black">
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-5 -7 -7" color="black">
+    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
+  </a-box>
+  <a-box position="-6 -5 -7" color="black">
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+  </a-box>
+  <a-box position="-6 -6 -7" color="black"></a-box>
+  <a-box position="-6 -7 -7" color="black"></a-box>
+  <a-box position="-7 -5 -7" color="black">
+    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
+  </a-box>
+  <a-box position="-7 -6 -7" color="black"></a-box>
+  <a-box position="-7 -7 -7" color="black"></a-box>
+  
+  <a-light type="ambient" color="#dddddd"></a-light>
+  
+  <a-camera user-height="-3">
+    <a-cursor color="#FAFAFA"></a-cursor>
+  </a-camera>
+  <a-sky color="#ECECEC"></a-sky>
+</a-scene>
+<script>
+  const block = document.querySelector('a-box');
+//  const plane = document.createElement('a-plane');
+  let ani = document.querySelector('a-animation');
+  
+//  plane.setAttribute('position', {
+//    x: 1,
+//    y: 1.51,
+//    z: 0
+//  });
+//  plane.setAttribute('rotation', {
+//    x: -90,
+//    y: 0,
+//    z: 0
+//  });
+//  plane.setAttribute('width', '0.9');
+//  plane.setAttribute('height', '0.9');
+//  plane.setAttribute('color', '#f9e300');
+//  block.appendChild(plane);
+  
+  rightBlocks = Array.prototype.filter.call(document.querySelectorAll('a-box'), block => block.getAttribute('position').x === -5);
+  setTimeout(() => {
+    rightBlocks.forEach(block => {
+      block.setAttribute('rotation', {
+        x: 0,
+        y: 0,
+        z: 0
+      });
+      block.setAttribute('pivot-point', {
+        x: 0,
+        y: -6 - block.getAttribute('position').y,
+        z: -6 - block.getAttribute('position').z
+      });
+      ani = document.createElement('a-animation');
+      ani.setAttribute('attribute', 'rotation');
+      ani.setAttribute('dur', 2000);
+      ani.setAttribute('easing', 'linear');
+      ani.setAttribute('to', '360 0 0');
+      ani.setAttribute('repeat', 0);
+      block.appendChild(ani);
+    });
+//    block.setAttribute('rotation', {
+//      x: 0,
+//      y: 0,
+//      z: 0
+//    });
+//    block.setAttribute('pivot-point', {
+//      x: 0,
+//      y: -1,
+//      z: -1
+//    });
+//    ani.parentNode.removeChild(ani);
+    ani = document.createElement('a-animation');
+    ani.setAttribute('attribute', 'rotation');
+    ani.setAttribute('dur', 2000);
+    ani.setAttribute('easing', 'linear');
+    ani.setAttribute('to', '360 0 0');
+    ani.setAttribute('repeat', 0);
+//    block.appendChild(ani);
+  }, 1800);
+</script>
+</body>
+</html>
