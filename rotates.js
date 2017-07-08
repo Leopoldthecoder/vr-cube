@@ -47,16 +47,17 @@ const generateRotation = dir => {
         z: (axis === 'z' ? 0 : centerCoor.z - block.getAttribute('position').z)
       })
 
-      ani = block.getElementsByTagName('a-animation')[0]
-      if (ani) {
-        block.removeChild(ani)
+      const oldAnimation = block.getElementsByTagName('a-animation')[0]
+      if (oldAnimation) {
+        block.removeChild(oldAnimation)
       }
-      ani = document.createElement('a-animation')
-      ani.setAttribute('attribute', 'rotation')
-      ani.setAttribute('dur', 1500)
-      ani.setAttribute('repeat', 0)
-      ani.setAttribute('to', deg)
-      block.appendChild(ani)
+
+      const animation = document.createElement('a-animation')
+      animation.setAttribute('attribute', 'rotation')
+      animation.setAttribute('dur', 1500)
+      animation.setAttribute('repeat', 0)
+      animation.setAttribute('to', deg)
+      block.appendChild(animation)
     })
   }
 }

@@ -4,7 +4,7 @@
   "description": "A VR Rubik's cube made with aframe",
   "main": "index.html",
   "scripts": {
-    "deploy": "rm -rf dist && mkdir dist && cp index.html aframe.min.js dist && gh-pages -d ."
+    "deploy": "gh-pages -d ."
   },
   "repository": {
     "type": "git",
