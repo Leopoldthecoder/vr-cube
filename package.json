@@ -1,0 +1,28 @@
+{
+  "name": "vr-cube",
+  "version": "0.0.1",
+  "description": "A VR Rubik's cube made with aframe",
+  "main": "index.html",
+  "scripts": {
+    "deploy": "rm -rf dist && mkdir dist && cp index.html aframe.min.js dist && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leopoldthecoder/vr-cube.git"
+  },
+  "keywords": [
+    "VR",
+    "aframe",
+    "rubik's",
+    "cube"
+  ],
+  "author": "Leopoldthecuber@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leopoldthecoder/vr-cube/issues"
+  },
+  "homepage": "https://github.com/Leopoldthecoder/vr-cube#readme",
+  "devDependencies": {
+    "gh-pages": "^1.0.0"
+  }
+}
