@@ -5,145 +5,156 @@
   <title>VR Cube</title>
   <script src="./aframe.min.js"></script>
   <script src="./components/pivot-point.js"></script>
+  <script src="./primitives/sticker.js"></script>
 </head>
 <body>
 <a-scene>
+  <a-assets>
+    <a-mixin id="up" position="0 0.51 0" rotation="-90 0 0" material="color: #F9E300"></a-mixin>
+    <a-mixin id="down" position="0 -0.51 0" rotation="-90 0 0" material="color: #F6FBFD"></a-mixin>
+    <a-mixin id="left" position="-0.51 0 0" rotation="0 90 0" material="color: #F97203"></a-mixin>
+    <a-mixin id="right" position="0.51 0 0" rotation="0 90 0" material="color: #D51B1C"></a-mixin>
+    <a-mixin id="front" position="0 0 0.51" rotation="0 0 0" material="color: #1B2DAB"></a-mixin>
+    <a-mixin id="back" position="0 0 -0.51" rotation="0 0 0" material="color: #0CBE03"></a-mixin>
+    <a-mixin id="animation" attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-mixin>
+  </a-assets>
+  
   <a-box position="-1 -5 -5" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="right"></a-sticker>
+    <a-sticker mixin="front"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-1 -6 -5" color="black">
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="front"></a-sticker>
+    <a-sticker mixin="right"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-1 -7 -5" color="black">
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="front"></a-sticker>
+    <a-sticker mixin="right"></a-sticker>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -5 -5" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="front"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -6 -5" color="black">
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="front"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -7 -5" color="black">
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="front"></a-sticker>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -5 -5" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="front"></a-sticker>
+    <a-sticker mixin="left"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -6 -5" color="black">
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="front"></a-sticker>
+    <a-sticker mixin="left"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -7 -5" color="black">
-    <a-plane position="0 0 0.51" rotation="0 0 0" width="0.9" height="0.9" color="#1B2DAB"></a-plane>
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="front"></a-sticker>
+    <a-sticker mixin="left"></a-sticker>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   
   <a-box position="-1 -5 -6" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="right"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-1 -6 -6" color="black">
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="right"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-1 -7 -6" color="black">
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="right"></a-sticker>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -5 -6" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -6 -6" color="black">
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -7 -6" color="black">
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -5 -6" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="left"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -6 -6" color="black">
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="left"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -7 -6" color="black">
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="left"></a-sticker>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   
   <a-box position="-1 -5 -7" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="right"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-1 -6 -7" color="black">
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="right"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-1 -7 -7" color="black">
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-plane position="0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#D51B1C"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="down"></a-sticker>
+    <a-sticker mixin="right"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -5 -7" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -6 -7" color="black">
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-2 -7 -7" color="black">
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="down"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -5 -7" color="black">
-    <a-plane position="0 0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F9E300"></a-plane>
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="up"></a-sticker>
+    <a-sticker mixin="left"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -6 -7" color="black">
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="left"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   <a-box position="-3 -7 -7" color="black">
-    <a-plane position="-0.51 0 0" rotation="0 90 0" width="0.9" height="0.9" color="#F97203"></a-plane>
-    <a-plane position="0 0 -0.51" rotation="0 0 0" width="0.9" height="0.9" color="#0CBE03"></a-plane>
-    <a-plane position="0 -0.51 0" rotation="-90 0 0" width="0.9" height="0.9" color="#F6FBFD"></a-plane>
-    <a-animation attribute="rotation" easing="linear" dur="1500" repeat="0" to="0 0 0"></a-animation>
+    <a-sticker mixin="left"></a-sticker>
+    <a-sticker mixin="back"></a-sticker>
+    <a-sticker mixin="down"></a-sticker>
+    <a-animation mixin="animation"></a-animation>
   </a-box>
   
   <a-light type="ambient" color="#dddddd"></a-light>
